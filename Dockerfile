@@ -1,2 +1,2 @@
 FROM nginx
-EXPOSE 80
+RUN echo 'This is version 1' > /usr/share/nginx/html/index.html

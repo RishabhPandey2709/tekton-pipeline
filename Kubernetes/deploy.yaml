@@ -1,23 +1,22 @@
-
-apiVersion: apps/v1
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
-  creationTimestamp: null
-  labels:
-    app: tekton-demo
-  name: tekton-demo
+  name: nginx
 spec:
-  replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
-      app: tekton-demo
-  template:
+      app: nginx
+  replicas: 3 # tells deployment to run 1 pods matching the template
+  template: # create pods using pod definition in this template
     metadata:
       labels:
-        app: tekton-demo
+        app: nginx
     spec:
       containers:
-        - image: imrishabh27/nginx-image
-          name: voting-ui
-          ports:
-            - containerPort: 80
+      - name: nginx
+        image: imrishabh27/nginx-image
+        ports:
+        - containerPort: 80
