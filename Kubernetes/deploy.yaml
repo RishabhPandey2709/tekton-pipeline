@@ -1,0 +1,23 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: tekton-demo
+  name: tekton-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tekton-demo
+  template:
+    metadata:
+      labels:
+        app: tekton-demo
+    spec:
+      containers:
+        - image: imrishabh27/nginx-image
+          name: voting-ui
+          ports:
+            - containerPort: 80
